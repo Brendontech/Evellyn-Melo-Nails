@@ -3,16 +3,24 @@ import unha from '../assets/images/trabalho-coracoes.jpg'
 import { SITE } from '../data/site'
 import { useCountUp } from '../hooks/useCountUp'
 
-function Numero({ valor, prefixo = '', sufixo = '', rotulo }) {
+/* Números em Nunito Sans (algarismos retos, o "1" não parece "l") e rótulos sempre em duas linhas, para alinhar as três colunas. */
+const NUMERO = 'foil block font-sans text-[clamp(2.4rem,7vw,3.6rem)] font-semibold leading-none tabular-nums tracking-tight'
+const ROTULO = 'mt-3 block font-caps text-[0.76rem] uppercase leading-snug tracking-[0.08em] text-mute sm:text-[0.84rem] sm:tracking-[0.12em]'
+
+function Numero({ valor, prefixo = '', sufixo = '', linha1, linha2 }) {
   const [ref, n] = useCountUp(valor)
   return (
     <div>
-      <b ref={ref} className="foil block font-serif text-[clamp(2.4rem,6vw,3.8rem)] font-normal leading-none">
+      <b ref={ref} className={NUMERO}>
         {prefixo}
         {n}
         {sufixo}
       </b>
-      <span className="font-caps mt-2 block text-[0.74rem] uppercase leading-snug tracking-[0.08em] text-mute sm:text-[0.82rem] sm:tracking-[0.12em]">{rotulo}</span>
+      <span className={ROTULO}>
+        {linha1}
+        <br />
+        {linha2}
+      </span>
     </div>
   )
 }
@@ -41,11 +49,15 @@ export default function Sobre() {
             Sou a Evellyn, designer de unhas em Presidente Olegário. Trabalho com alongamento, manutenção e nail art à mão livre. Atendo com hora marcada, material esterilizado e foco total em você.
           </p>
           <div className="mt-10 grid grid-cols-3 gap-3 border-t border-hair pt-8 sm:gap-4">
-            <Numero valor={SITE.anosProfissao} prefixo="+" rotulo="Anos de profissão" />
-            <Numero valor={SITE.totalTecnicas} sufixo="+" rotulo="Técnicas" />
+            <Numero valor={SITE.anosProfissao} prefixo="+" linha1="Anos de" linha2="profissão" />
+            <Numero valor={SITE.totalTecnicas} sufixo="+" linha1="Técnicas" linha2="avançadas" />
             <div>
-              <b className="foil block font-serif text-[clamp(2.4rem,6vw,3.8rem)] font-normal leading-none">1:1</b>
-              <span className="font-caps mt-2 block text-[0.74rem] uppercase leading-snug tracking-[0.08em] text-mute sm:text-[0.82rem] sm:tracking-[0.12em]">Atendimento</span>
+              <b className={NUMERO}>1 a 1</b>
+              <span className={ROTULO}>
+                Atendimento
+                <br />
+                exclusivo
+              </span>
             </div>
           </div>
         </div>

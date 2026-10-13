@@ -57,8 +57,8 @@ export default function Hero({ iniciado }) {
         <div className="pointer-events-none absolute -inset-3.5 hidden rounded-t-full rounded-b-[20px] border border-hair lg:block" />
         <div className="absolute inset-0 overflow-hidden lg:rounded-t-full lg:rounded-b-[14px]">
           <img ref={img} src={foto} alt="Evellyn Melo atendendo no estúdio Univers Nails" className="block h-[115%] w-full object-cover object-[50%_12%] lg:object-[50%_20%]" />
-          {/* no celular o degradê escurece a parte de baixo da foto (onde fica o texto) */}
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,6,5,.45)_0,transparent_18%,transparent_40%,rgba(7,6,5,.94)_60%,#070605_76%)] lg:bg-[linear-gradient(180deg,transparent_55%,rgba(7,6,5,.85))]" />
+          {/* o degradê escurece a parte de baixo da foto: esconde o nome bordado na camisa e, no celular, dá fundo ao texto */}
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,6,5,.45)_0,transparent_18%,transparent_40%,rgba(7,6,5,.94)_60%,#070605_76%)] lg:bg-[linear-gradient(180deg,transparent_42%,rgba(7,6,5,.75)_62%,rgba(7,6,5,.97)_78%,#070605_90%)]" />
         </div>
         {/* selo girando (só no computador, no celular poluía a foto) */}
         <div aria-hidden="true" className="absolute -left-14 bottom-14 z-[4] hidden h-32 w-32 lg:block">
@@ -87,7 +87,7 @@ export default function Hero({ iniciado }) {
           <p className="m-0 whitespace-nowrap font-caps text-[0.8rem] uppercase tracking-[0.1em] text-gold-pale sm:text-[0.9rem] sm:tracking-[0.14em]">Especialista em design de unhas</p>
           <span className="hidden h-px w-8 sm:block lg:hidden" style={{ background: 'var(--foil)' }} />
         </div>
-        <p className="mb-6 mt-4 max-w-[34ch] text-[1.05rem] text-mute lg:mb-7 lg:mt-5 lg:text-[1.15rem]">
+        <p className="mb-6 mt-4 max-w-[34ch] text-balance text-[1.05rem] text-mute lg:mb-7 lg:mt-5 lg:max-w-[44ch] lg:text-[1.15rem]">
           Mais de <em className="text-[1.08em] text-nude">{SITE.totalTecnicas} técnicas avançadas</em> e arte feita à mão. Atendimento em {SITE.cidade}.
         </p>
         <div className="mb-7 lg:mb-9">
@@ -99,10 +99,6 @@ export default function Hero({ iniciado }) {
         </div>
       </div>
 
-      <div aria-hidden="true" className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-caps text-[0.76rem] tracking-label text-mute lg:flex">
-        <i className="block h-11 w-px bg-linear-to-b from-gold-light to-transparent" />
-        ROLE
-      </div>
     </section>
   )
 }

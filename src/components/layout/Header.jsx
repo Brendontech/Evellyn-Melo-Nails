@@ -38,8 +38,8 @@ export default function Header() {
       >
         <div className="container-site flex h-[68px] items-center justify-between lg:h-[76px]">
           <a href="#inicio" className="flex items-center gap-3" aria-label="Evellyn Melo, início">
-            <Logo tipo="monograma" className="w-9!" alt="" />
-            <span className="hidden font-caps text-[0.84rem] tracking-[0.16em] text-gold-light lg:inline">EVELLYN MELO</span>
+            {/* só o monograma: o nome já aparece grande no início da página */}
+            <Logo tipo="monograma" className="w-9! lg:w-10!" alt="" />
           </a>
 
           <nav aria-label="Seções" className="hidden items-center gap-8 lg:flex">
