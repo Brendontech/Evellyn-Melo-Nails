@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ Base ============ */
+@layer base {
+  :root {
+    --season: #ff8a3d;
+    --foil: linear-gradient(105deg, #8b5a2b 0%, #e3b57c 22%, #fff0d4 36%, #e3b57c 50%, #8b5a2b 68%, #e3b57c 84%, #fff0d4 100%);
+    color-scheme: dark;
+  }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-ink text-cream font-sans antialiased;
+    font-size: 18px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  body.travado { overflow: hidden; }
+  ::selection { background: #d8a86c; color: #070605; }
+  :focus-visible { outline: 2px solid #fff0d4; outline-offset: 4px; }
+  section[id] { scroll-margin-top: 84px; }
+  img { max-width: 100%; }
+}
+
+/* ============ Componentes ============ */
+@layer components {
+  .container-site { @apply mx-auto w-full max-w-[1180px] px-4 sm:px-5; }
+
+  .rotulo { @apply font-caps text-[0.74rem] uppercase tracking-label text-gold; }
+
+  /* texto em folha de ouro com brilho correndo */
+  .foil {
+    background: var(--foil);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: foil 7s linear infinite;
+  }
+
+  /* Botão principal: champanhe sólido + círculo escuro com a seta */
+  .btn {
+    @apply relative inline-flex min-h-[60px] items-center justify-between gap-4 rounded-full font-sans text-[0.95rem] font-semibold uppercase tracking-[0.14em] no-underline transition-all duration-300;
+  }
+  .btn-primario {
+    @apply btn bg-gold-btn py-2 pl-7 pr-2 text-ink;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 18px 40px -22px rgba(230, 195, 147, 0.7);
+  }
+  .btn-primario:hover { @apply bg-gold-pale; }
+  .btn-primario .btn-seta {
+    @apply grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink text-gold-pale transition-transform duration-500;
+  }
+  .btn-primario:hover .btn-seta { transform: rotate(-45deg); }
+  .btn-secundario {
+    @apply btn justify-center border border-hair bg-white/[0.02] px-7 text-cream;
+  }
+  .btn-secundario:hover { @apply border-gold; }
+  .btn:disabled { @apply cursor-not-allowed opacity-40; }
+
+  .btn-circulo {
+    @apply grid h-12 w-12 shrink-0 place-items-center rounded-full border border-hair bg-transparent text-xl text-cream transition-colors sm:h-14 sm:w-14;
+  }
+  .btn-circulo:hover:not(:disabled) { @apply border-gold bg-gold-light/10; }
+  .btn-circulo:disabled { @apply cursor-not-allowed opacity-25; }
+
+  .link-voltar { @apply mt-3 inline-flex min-h-[44px] items-center gap-2 text-[0.95rem] text-mute underline underline-offset-4 hover:text-cream; }
+
+  .campo { @apply flex flex-col gap-2; }
+  .campo span { @apply font-caps text-[0.72rem] uppercase tracking-[0.2em] text-mute; }
+  .campo input {
+    @apply min-h-[62px] rounded-2xl border border-hair bg-cream/[0.03] px-4 text-[1.15rem] text-cream outline-none transition placeholder:text-mute/50 focus:border-gold-light;
+  }
+  .campo input:focus { box-shadow: 0 0 0 4px rgba(227, 181, 124, 0.12); }
+}
+
+/* ============ Animações ============ */
+@keyframes foil { to { background-position: -250% 0; } }
+@keyframes girar { to { transform: rotate(360deg); } }
+@keyframes pulsar { 50% { transform: scale(0.8); opacity: 0.7; } }
+@keyframes subir-letra { to { transform: none; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes deslizar { from { transform: translateX(24px); opacity: 0.01; } to { transform: none; opacity: 1; } }
+@keyframes surgir { from { transform: scale(0.85) translateY(10px); opacity: 0.01; } to { transform: none; opacity: 1; } }
+@keyframes tracar { to { stroke-dashoffset: 0; } }
+@keyframes dica-swipe { 50% { transform: translateX(8px); } }
+@keyframes brilho-logo { from { transform: translateX(-120%); } to { transform: translateX(120%); } }
+
+.animate-girar { animation: girar 22s linear infinite; }
+.animate-pulsar { animation: pulsar 2.4s ease-in-out infinite; }
+.animate-marquee { animation: marquee 38s linear infinite; }
+.animate-deslizar { animation: deslizar 0.6s cubic-bezier(0.2, 0.9, 0.2, 1); }
+.animate-surgir { animation: surgir 0.6s 1.1s cubic-bezier(0.2, 0.9, 0.2, 1) both; }
+.animate-dica { animation: dica-swipe 1.8s ease-in-out infinite; }
+
+/* letras do nome no hero */
+.letra-mascara { display: inline-block; overflow: hidden; padding-bottom: 0.08em; vertical-align: top; }
+.letra { display: inline-block; transform: translateY(105%) rotate(6deg); }
+.letra.ativa { animation: subir-letra 1.1s cubic-bezier(0.2, 0.9, 0.2, 1) forwards; }
+
+/* revelar ao rolar (só elementos abaixo da dobra recebem .pre) */
+.revelar { transition: transform 1.1s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 1.1s; }
+.revelar.pre { transform: translateY(44px); opacity: 0.01; }
+
+/* brilho que passa por cima do logo (usa o próprio logo como máscara) */
+.logo-brilho { position: relative; display: inline-block; overflow: hidden; }
+.logo-brilho::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 246, 225, 0.85) 50%, transparent 65%);
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+  animation: brilho-logo 3.6s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* linha dourada dos itens da carta */
+.item-carta::before {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -1px; height: 1px; width: 100%;
+  background: var(--foil);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.item-carta:hover::before { transform: scaleX(1); }
+
+.sem-scrollbar { scrollbar-width: none; }
+.sem-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .letra { transform: none; }
+  .revelar.pre { transform: none; opacity: 1; }
+  html { scroll-behavior: auto; }
+}
