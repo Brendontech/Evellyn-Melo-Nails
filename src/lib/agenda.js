@@ -1,4 +1,4 @@
-import { DIAS_FECHADOS, HORARIOS, SINAL_PIX } from '../data/site'
+import { ANTECEDENCIA_MINUTOS, DIAS_FECHADOS, HORARIOS, MESES_AGENDA, SINAL_PIX } from '../data/site'
 import { temaDoMes } from '../data/temas'
 import { pad } from './format'
 
@@ -23,16 +23,38 @@ export function gradeDoMes(ano, mes) {
   return [...Array(primeiro).fill(null), ...Array.from({ length: total }, (_, i) => new Date(ano, mes, i + 1))]
 }
 
-/**
- * Dia aceita agendamento? Recebe os horários ocupados (vindos do serviço).
- * ocupados: Set de "YYYY-MM-DD HH:MM"
- */
+/** O horário já passou (ou está perto demais para marcar hoje)? */
+export function horarioEncerrado(data, horario) {
+  const [hh, mm] = horario.split(':').map(Number)
+  const inicio = new Date(data.getFullYear(), data.getMonth(), data.getDate(), hh, mm)
+  return inicio.getTime() < Date.now() + ANTECEDENCIA_MINUTOS * 60000
+}
+
+/** ocupados: Set de "YYYY-MM-DD HH:MM" vindo do serviço */
+export const horarioOcupado = (data, horario, ocupados) => ocupados.has(`${chaveData(data)} ${horario}`)
+
+export const horarioLivre = (data, horario, ocupados) => !horarioOcupado(data, horario, ocupados) && !horarioEncerrado(data, horario)
+
+/** Dia aceita agendamento? Hoje entra se ainda tiver horário livre mais tarde. */
 export function diaDisponivel(data, ocupados) {
-  if (data <= hoje()) return false
+  if (data < hoje()) return false
   if (DIAS_FECHADOS.includes(data.getDay())) return false
   if (temaDoMes(data.getMonth()).fechado.includes(data.getDate())) return false
-  return HORARIOS.some((h) => !ocupados.has(`${chaveData(data)} ${h}`))
+  return HORARIOS.some((h) => horarioLivre(data, h, ocupados))
 }
+
+/** Primeiro dia com horário livre a partir de hoje, dentro dos meses liberados. */
+export function proximoDiaLivre(ocupados) {
+  const ultimo = MESES_AGENDA[MESES_AGENDA.length - 1]
+  const fim = new Date(ultimo.ano, ultimo.mes + 1, 0)
+  for (let d = hoje(); d <= fim; d = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1)) {
+    if (diaDisponivel(d, ocupados)) return d
+  }
+  return null
+}
+
+/** Índice em MESES_AGENDA do mês de uma data (ou 0). */
+export const indiceDoMes = (data) => Math.max(0, MESES_AGENDA.findIndex((m) => m.ano === data.getFullYear() && m.mes === data.getMonth()))
 
 /** Link "Adicionar ao Google Agenda" para a cliente salvar o próprio horário. */
 export function linkGoogleAgenda({ titulo, inicio, duracaoMin, local }) {

@@ -36,7 +36,7 @@ function Mes({ ano, mes, ocupados, selecionado, onEscolher }) {
                   : livre
                     ? 'border-gold-light/20 bg-cream/[0.045] text-cream hover:scale-[1.08] hover:border-gold-light hover:shadow-[0_0_22px_-6px_#e3b57c]'
                     : 'cursor-not-allowed border-transparent text-mute/30',
-                ehHoje && !sel ? '!text-gold-light' : '',
+                ehHoje && !sel ? 'text-gold-light! ring-1 ring-gold-light/70' : '',
               ].join(' ')}
             >
               {data.getDate()}
@@ -64,9 +64,9 @@ export default function Calendario({ indice, setIndice, ocupados, selecionado, o
       <div className="relative h-[170px] overflow-hidden transition-[background] duration-1000 sm:h-[220px]" style={{ background: tema.ceu }}>
         <SeasonScene key={tema.cena} cena={tema.cena} />
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-linear-to-b from-transparent to-black/70 p-4 sm:px-6 sm:py-5">
-          <h3 className="m-0 font-accent text-[clamp(2.3rem,6vw,3.4rem)] font-normal capitalize italic leading-[0.9]">{MESES[atual.mes]}</h3>
+          <h3 className="m-0 font-accent text-[clamp(2.3rem,6vw,3.4rem)] font-normal capitalize italic leading-[0.9] text-cream drop-shadow-[0_2px_12px_rgba(0,0,0,.6)]">{MESES[atual.mes]}</h3>
           {tema.destaque && (
-            <div className="text-right text-[0.82rem] leading-snug sm:text-[0.92rem]">
+            <div className="text-right text-[0.82rem] leading-snug text-cream drop-shadow-[0_2px_10px_rgba(0,0,0,.6)] sm:text-[0.92rem]">
               <b className="block font-caps text-[0.76rem] font-semibold tracking-[0.14em] sm:text-[0.82rem]" style={{ color: tema.cor }}>
                 {tema.destaque.nome} · {pad(tema.destaque.dia)}/{pad(atual.mes + 1)}
               </b>

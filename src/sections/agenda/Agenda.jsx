@@ -3,7 +3,8 @@ import SectionHeading from '../../components/ui/SectionHeading'
 import { PROCEDIMENTOS } from '../../data/procedimentos'
 import { temaDoMes } from '../../data/temas'
 import { MESES_AGENDA } from '../../data/site'
-import { exigeSinal } from '../../lib/agenda'
+import { exigeSinal, indiceDoMes } from '../../lib/agenda'
+import { rolarPara } from '../../lib/scroll'
 import { buscarOcupados, criarAgendamento } from '../../services/agendaService'
 import Calendario from './Calendario'
 import PassoConfirmado from './steps/PassoConfirmado'
@@ -39,7 +40,7 @@ export default function Agenda() {
 
   const atualizar = (parcial) => setEstado((s) => ({ ...s, ...parcial }))
   const rolarPainel = useCallback(() => {
-    if (window.innerWidth < 1024) setTimeout(() => painel.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60)
+    if (window.innerWidth < 1024) setTimeout(() => rolarPara(painel.current), 60)
   }, [])
 
   const comSinal = exigeSinal(estado.data)
@@ -51,6 +52,12 @@ export default function Agenda() {
     await criarAgendamento({ data: estado.data, horario: estado.horario, procedimentoId: estado.procedimentoId, nome: estado.nome, telefone: estado.telefone, ...extra })
     setEnviando(false)
     atualizar({ passo: 6 })
+    rolarPainel()
+  }
+
+  const escolherDia = (data) => {
+    setIndiceMes(indiceDoMes(data))
+    setEstado((s) => ({ ...s, data, horario: null, passo: 2 }))
     rolarPainel()
   }
 
@@ -97,13 +104,13 @@ export default function Agenda() {
           comSinal={comSinal}
           onNovo={() => {
             setEstado(VAZIO)
-            document.getElementById('calendario')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            rolarPara('#calendario', { bloco: 'center' })
           }}
         />
       )
       break
     default:
-      conteudo = <PassoInicio />
+      conteudo = <PassoInicio ocupados={ocupados} onEscolher={escolherDia} />
   }
 
   const mostraCabecalho = estado.passo >= 2 && estado.passo <= 5
@@ -120,10 +127,7 @@ export default function Agenda() {
               setIndice={setIndiceMes}
               ocupados={ocupados}
               selecionado={estado.data}
-              onEscolher={(data) => {
-                setEstado((s) => ({ ...s, data, horario: null, passo: 2 }))
-                rolarPainel()
-              }}
+              onEscolher={escolherDia}
             />
           </div>
 

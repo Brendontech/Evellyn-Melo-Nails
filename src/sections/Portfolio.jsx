@@ -121,11 +121,11 @@ export default function Portfolio() {
         ref={dialogo}
         onClose={() => setAberto(null)}
         onClick={(e) => e.target === dialogo.current && setAberto(null)}
-        className="max-w-[min(92vw,560px)] bg-transparent p-0 backdrop:bg-ink/90 backdrop:backdrop-blur"
+        className="fixed inset-0 m-auto h-fit max-h-[94svh] w-[min(92vw,520px)] max-w-none overflow-visible bg-transparent p-0 backdrop:bg-ink/90 backdrop:backdrop-blur"
       >
         {aberto && (
           <div className="text-center">
-            <img src={aberto.foto} alt={aberto.titulo} className="block max-h-[78vh] w-full rounded-t-[180px] rounded-b-[10px] border border-gold object-contain" />
+            <img src={aberto.foto} alt={aberto.titulo} className="mx-auto block max-h-[72svh] w-auto max-w-full rounded-t-[180px] rounded-b-[10px] border border-gold object-contain" />
             <p className="my-3 font-serif text-[1.4rem] text-cream">{aberto.titulo}</p>
             <button type="button" onClick={() => setAberto(null)} className="btn-secundario min-h-[48px]">Fechar</button>
           </div>

@@ -30,7 +30,7 @@ function ContagemData() {
   if (n < 0) return null
   return (
     <div
-      className="mb-6 inline-flex items-center gap-3 rounded-full border py-2 pl-2.5 pr-5 text-[0.9rem] lg:mb-7"
+      className="inline-flex items-center gap-3 rounded-full border py-2 pl-2.5 pr-5 text-[0.95rem]"
       style={{ borderColor: `${tema.cor}88`, background: `${tema.cor}1a` }}
     >
       <span className="h-6 w-6 rounded-full animate-pulsar" style={{ background: `radial-gradient(circle at 35% 30%, #fff 0, ${tema.cor} 45%, transparent 72%)`, boxShadow: `0 0 18px ${tema.cor}` }} />
@@ -50,18 +50,18 @@ export default function Hero({ iniciado }) {
   }, [])
 
   return (
-    <section id="inicio" className="container-site relative grid overflow-x-clip items-center gap-0 lg:min-h-[min(900px,100svh)] lg:grid-cols-[1.15fr_.85fr] lg:gap-5 lg:pb-16 lg:pt-28">
-
+    <section id="inicio" className="container-site relative grid items-center gap-0 overflow-x-clip lg:min-h-[min(900px,100svh)] lg:grid-cols-[1.15fr_.85fr] lg:gap-5 lg:pb-16 lg:pt-28">
       {/* Foto */}
-      <div className="relative order-first -mx-4 h-[min(76svh,640px)] sm:-mx-5 lg:order-none lg:col-start-2 lg:row-start-1 lg:mx-0 lg:aspect-[3/4] lg:h-auto lg:max-w-[440px] lg:justify-self-end lg:w-full">
+      <div className="relative order-first -mx-4 h-[min(68svh,580px)] sm:-mx-5 lg:order-none lg:col-start-2 lg:row-start-1 lg:mx-0 lg:aspect-[3/4] lg:h-auto lg:w-full lg:max-w-[440px] lg:justify-self-end">
         <div className="pointer-events-none absolute -inset-7 hidden rounded-t-full rounded-b-[20px] border border-gold-light/10 lg:block" />
         <div className="pointer-events-none absolute -inset-3.5 hidden rounded-t-full rounded-b-[20px] border border-hair lg:block" />
         <div className="absolute inset-0 overflow-hidden lg:rounded-t-full lg:rounded-b-[14px]">
-          <img ref={img} src={foto} alt="Evellyn Melo atendendo no estúdio Univers Nails" className="block h-[115%] w-full object-cover object-[50%_20%]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,6,5,.55)_0,transparent_25%,transparent_45%,#070605_98%)] lg:bg-[linear-gradient(180deg,transparent_55%,rgba(7,6,5,.85))]" />
+          <img ref={img} src={foto} alt="Evellyn Melo atendendo no estúdio Univers Nails" className="block h-[115%] w-full object-cover object-[50%_12%] lg:object-[50%_20%]" />
+          {/* no celular o degradê escurece a parte de baixo da foto (onde fica o texto) */}
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,6,5,.45)_0,transparent_18%,transparent_40%,rgba(7,6,5,.94)_60%,#070605_76%)] lg:bg-[linear-gradient(180deg,transparent_55%,rgba(7,6,5,.85))]" />
         </div>
-        {/* selo girando */}
-        <div aria-hidden="true" className="absolute right-4 top-24 z-[4] h-[104px] w-[104px] lg:-left-14 lg:bottom-14 lg:right-auto lg:top-auto lg:h-32 lg:w-32">
+        {/* selo girando (só no computador, no celular poluía a foto) */}
+        <div aria-hidden="true" className="absolute -left-14 bottom-14 z-[4] hidden h-32 w-32 lg:block">
           <svg viewBox="0 0 120 120" className="h-full w-full animate-girar">
             <defs>
               <path id="circulo-selo" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0" />
@@ -70,28 +70,31 @@ export default function Hero({ iniciado }) {
               <textPath href="#circulo-selo">UNIVERS NAILS · ESPECIALISTA · </textPath>
             </text>
           </svg>
-          <div className="absolute inset-[26px] grid place-items-center rounded-full border border-gold bg-ink p-2.5 lg:inset-[32px] lg:p-3">
+          <div className="absolute inset-[32px] grid place-items-center rounded-full border border-gold bg-ink p-3">
             <Logo tipo="monograma" alt="" />
           </div>
         </div>
       </div>
 
-      {/* Texto */}
-      <div className="relative z-[3] -mt-48 pb-4 sm:-mt-56 lg:col-start-1 lg:row-start-1 lg:mt-0">
-        <ContagemData />
-        <h1 className="m-0 font-serif text-[clamp(3.6rem,15vw,10.5rem)] font-normal leading-[0.86] tracking-[-0.02em]" aria-label={SITE.nome}>
+      {/* Texto: centralizado no celular, alinhado à esquerda no computador */}
+      <div className="relative z-[3] -mt-44 flex flex-col items-center pb-6 text-center sm:-mt-52 lg:col-start-1 lg:row-start-1 lg:mt-0 lg:items-start lg:text-left">
+        <h1 className="m-0 font-serif text-[clamp(3.4rem,14vw,10.5rem)] font-normal leading-[0.9] tracking-[-0.01em]" aria-label={SITE.nome}>
           <NomeAnimado texto="Evellyn" atraso={0} ativo={iniciado} />
-          <NomeAnimado texto="Melo" atraso={0.25} ativo={iniciado} className="mt-[0.04em] pl-[0.6em] font-accent italic lg:pl-[0.9em]" />
+          <NomeAnimado texto="Melo" atraso={0.25} ativo={iniciado} className="mt-[0.04em] font-accent italic lg:pl-[0.9em]" />
         </h1>
-        <div className="mt-6 flex items-center gap-4 lg:mt-8">
-          <span className="h-px w-10 lg:w-16" style={{ background: 'var(--foil)' }} />
-          <p className="m-0 font-caps text-[0.82rem] uppercase tracking-[0.14em] sm:text-[0.8rem] sm:tracking-[0.16em]">{SITE.marca} · Design de unhas</p>
+        <div className="mt-5 flex items-center gap-3 lg:mt-8 lg:gap-4">
+          <span className="hidden h-px w-8 sm:block lg:w-16" style={{ background: 'var(--foil)' }} />
+          <p className="m-0 whitespace-nowrap font-caps text-[0.8rem] uppercase tracking-[0.1em] text-gold-pale sm:text-[0.9rem] sm:tracking-[0.14em]">Especialista em design de unhas</p>
+          <span className="hidden h-px w-8 sm:block lg:hidden" style={{ background: 'var(--foil)' }} />
         </div>
-        <p className="mb-7 mt-4 max-w-[32ch] text-[1.05rem] text-mute lg:mb-9 lg:mt-5 lg:text-[1.15rem]">
-          Mais de <em className="font-serif text-[1.15em] text-nude">{SITE.totalTecnicas} técnicas avançadas</em> e arte feita à mão, unha por unha. Atendimento exclusivo em {SITE.cidade}.
+        <p className="mb-6 mt-4 max-w-[34ch] text-[1.05rem] text-mute lg:mb-7 lg:mt-5 lg:text-[1.15rem]">
+          Mais de <em className="text-[1.08em] text-nude">{SITE.totalTecnicas} técnicas avançadas</em> e arte feita à mão. Atendimento em {SITE.cidade}.
         </p>
-        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Button href="#agenda" className="w-full sm:w-auto sm:min-w-[300px]">Agendar meu horário</Button>
+        <div className="mb-7 lg:mb-9">
+          <ContagemData />
+        </div>
+        <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+          <Button href="#agenda" className="w-full sm:w-auto sm:min-w-[320px]">Agendar meu horário</Button>
           <Button href="#trabalhos" variante="secundario" className="w-full sm:w-auto">Ver trabalhos</Button>
         </div>
       </div>

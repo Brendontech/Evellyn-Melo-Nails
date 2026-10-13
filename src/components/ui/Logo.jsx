@@ -8,7 +8,7 @@ import monograma from '../../assets/brand/monograma.png'
  */
 export default function Logo({ tipo = 'completo', brilho = false, className = '', alt = 'Evellyn Melo · Univers Nails' }) {
   const src = tipo === 'monograma' ? monograma : logo
-  const img = <img src={src} alt={alt} className={`block h-auto w-full ${brilho ? '' : className}`} draggable="false" />
+  const img = <img src={src} alt={alt} className={`block h-auto ${brilho || !className ? 'w-full' : className}`} draggable="false" />
   if (!brilho) return img
   return (
     <span className={`logo-brilho ${className}`} style={{ '--logo': `url(${src})` }}>

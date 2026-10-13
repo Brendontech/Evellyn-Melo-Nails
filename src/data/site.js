@@ -17,6 +17,9 @@ export const SITE = {
 // Horários que a agenda oferece em cada dia útil. [EXEMPLO]
 export const HORARIOS = ['08:00', '09:30', '11:00', '13:30', '15:00', '16:30', '18:00']
 
+// Antecedência mínima para marcar no próprio dia (minutos). Ex.: às 14h50, com 60, o primeiro horário possível é depois das 15h50.
+export const ANTECEDENCIA_MINUTOS = 60
+
 // Dias da semana sem atendimento (0 = domingo).
 export const DIAS_FECHADOS = [0]
 

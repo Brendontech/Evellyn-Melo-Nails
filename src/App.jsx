@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import GoldDust from './components/effects/GoldDust'
 import Footer from './components/layout/Footer'
 import Header from './components/layout/Header'
@@ -6,6 +6,7 @@ import Intro from './components/layout/Intro'
 import MobileDock from './components/layout/MobileDock'
 import { ToastProvider } from './components/ui/Toast'
 import { useReveal } from './hooks/useReveal'
+import { ativarLinksSuaves } from './lib/scroll'
 import Agenda from './sections/agenda/Agenda'
 import Hero from './sections/Hero'
 import Marquee from './sections/Marquee'
@@ -17,6 +18,7 @@ export default function App() {
   const [iniciado, setIniciado] = useState(false)
   const aoTerminarIntro = useCallback(() => setIniciado(true), [])
   useReveal()
+  useEffect(() => ativarLinksSuaves(), [])
 
   return (
     <ToastProvider>

@@ -16,7 +16,7 @@ export default function Footer() {
       <div className="container-site relative grid gap-12 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-20">
         {/* Logo oficial, sem efeitos */}
         <div className="flex flex-col items-center gap-6 lg:items-start">
-          <Logo className="w-[min(230px,60vw)]" />
+          <Logo className="w-[min(170px,48vw)] lg:w-[220px]" />
           <Button href="#agenda" className="w-full max-w-[320px]">Agendar horário</Button>
         </div>
 

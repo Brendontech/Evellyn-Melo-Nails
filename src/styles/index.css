@@ -35,7 +35,7 @@
     --foil: linear-gradient(105deg, #8b5a2b 0%, #e3b57c 22%, #fff0d4 36%, #e3b57c 50%, #8b5a2b 68%, #e3b57c 84%, #fff0d4 100%);
     color-scheme: dark;
   }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; } /* rolagem suave feita em JS: src/lib/scroll.js */
   body {
     @apply bg-ink text-cream font-sans antialiased;
     font-size: 18px;
@@ -78,10 +78,13 @@
 
   /* Principal: champanhe sólido + círculo escuro com a seta */
   .btn-primario {
-    @apply justify-between bg-gold-btn py-2 pl-7 pr-2 text-ink;
+    @apply justify-between bg-gold-btn py-2 pl-2 pr-2 text-ink;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset, 0 18px 40px -22px rgba(230, 195, 147, 0.7);
   }
   .btn-primario:hover:not(:disabled) { @apply bg-gold-pale; }
+  /* texto centralizado no botão: o recuo à esquerda tem a mesma largura do círculo da seta */
+  .btn-primario > .btn-texto { flex: 1; text-align: center; padding-left: 2.75rem; }
+  .btn-secundario > .btn-texto { text-align: center; }
   .btn-primario .btn-seta {
     @apply grid h-11 w-11 shrink-0 place-items-center rounded-full bg-ink text-gold-pale transition-transform duration-500;
   }
