@@ -31,7 +31,7 @@ export default function PassoDados({ nomeInicial, telefoneInicial, comSinal, env
         </label>
       </div>
       <p className="mb-0 mt-3 min-h-[1.4em] text-[0.95rem] text-[#ffb39b]" role="alert">{erro}</p>
-      <p className="m-0 text-[0.94rem] font-light text-mute">Você recebe a confirmação nesse número um dia antes do horário.</p>
+      <p className="m-0 text-[0.94rem] text-mute">Você recebe a confirmação nesse número um dia antes do horário.</p>
       <div className="mt-6">
         <Button type="submit" className="w-full" disabled={enviando}>
           {enviando ? 'Enviando…' : comSinal ? 'Ir para o sinal' : 'Confirmar horário'}

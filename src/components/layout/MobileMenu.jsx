@@ -31,7 +31,7 @@ export default function MobileMenu({ aberto, fechar }) {
             opacity: aberto ? 1 : 0.01,
           }}
         >
-          <small className="font-caps text-[0.7rem] tracking-label text-gold">{String(i + 1).padStart(2, '0')}</small>
+          <small className="font-caps text-[0.8rem] tracking-label text-gold">{String(i + 1).padStart(2, '0')}</small>
           {l.destaque ? <i className="text-gold-light">{l.label}</i> : l.label}
         </a>
       ))}

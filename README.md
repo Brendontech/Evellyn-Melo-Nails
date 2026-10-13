@@ -2,7 +2,7 @@
 
 Site de portfólio e agendamento online da Evellyn Melo, designer de unhas em Presidente Olegário – MG.
 
-**Stack:** React 18 · Vite 5 · Tailwind CSS 3
+**Stack:** React 18 · Vite 7 · Tailwind CSS 4 (plugin `@tailwindcss/vite`, tema definido em `src/styles/index.css`)
 
 ## Rodar
 
@@ -49,7 +49,7 @@ npm run preview   # serve o /dist localmente
     ├── services/
     │   └── agendaService.js    # camada de dados da agenda (hoje em modo demonstração)
     └── styles/
-        └── index.css           # Tailwind + componentes e animações globais
+        └── index.css           # tema Tailwind (@theme), componentes e animações globais
 ```
 
 ## O que editar para a cliente

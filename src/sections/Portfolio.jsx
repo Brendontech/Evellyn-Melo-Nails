@@ -29,7 +29,7 @@ function Card({ item, onAbrir, inclinar }) {
             className="absolute inset-0 opacity-0 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-100"
             style={{ background: 'radial-gradient(circle at var(--mx,50%) var(--my,30%), rgba(255,240,212,.3), transparent 45%)' }}
           />
-          <span className="absolute left-1/2 top-4 -translate-x-1/2 whitespace-nowrap rounded-full border border-hair bg-ink/60 px-3 py-1.5 font-caps text-[0.62rem] uppercase tracking-label backdrop-blur">
+          <span className="absolute left-1/2 top-4 -translate-x-1/2 whitespace-nowrap rounded-full border border-hair bg-ink/60 px-3 py-1.5 font-caps text-[0.84rem] uppercase tracking-label backdrop-blur">
             {item.tag}
           </span>
         </div>

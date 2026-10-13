@@ -2,11 +2,15 @@ import { useEffect, useState } from 'react'
 import Logo from '../ui/Logo'
 
 /**
- * Abertura: o logo oficial surge com um brilho passando, uma linha dourada corta a tela
- * e as duas metades se abrem como cortina. Toque para pular.
+ * Abertura em vidro fosco: o site já aparece desfocado ao fundo e o logo oficial
+ * surge no centro com um brilho passando. Depois o vidro "desembaça" e revela a página.
+ * Toque/clique em qualquer lugar para pular.
  */
+const DURACAO_ENTRADA = 2300 // ms com o logo em destaque
+const DURACAO_SAIDA = 1000 // ms para o vidro desembaçar
+
 export default function Intro({ onFim }) {
-  const [fase, setFase] = useState('entrada') // entrada → corte → aberta → fim
+  const [fase, setFase] = useState('entrada') // entrada → saida → fim
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -15,52 +19,61 @@ export default function Intro({ onFim }) {
       return
     }
     document.body.classList.add('travado')
-    const t1 = setTimeout(() => setFase('corte'), 1500)
-    return () => clearTimeout(t1)
+    const t = setTimeout(() => setFase('saida'), DURACAO_ENTRADA)
+    return () => clearTimeout(t)
   }, [onFim])
 
   useEffect(() => {
-    if (fase === 'corte') {
-      const t = setTimeout(() => {
-        setFase('aberta')
-        document.body.classList.remove('travado')
-        onFim()
-      }, 420)
-      return () => clearTimeout(t)
-    }
-    if (fase === 'aberta') {
-      const t = setTimeout(() => setFase('fim'), 1200)
-      return () => clearTimeout(t)
-    }
+    if (fase !== 'saida') return
+    document.body.classList.remove('travado')
+    onFim()
+    const t = setTimeout(() => setFase('fim'), DURACAO_SAIDA)
+    return () => clearTimeout(t)
   }, [fase, onFim])
 
   if (fase === 'fim') return null
-  const aberta = fase === 'aberta'
-  const ease = 'cubic-bezier(.77,0,.18,1)'
+  const saindo = fase === 'saida'
+  const ease = 'cubic-bezier(.65,0,.25,1)'
 
   return (
     <div
       aria-hidden="true"
-      onClick={() => fase === 'entrada' && setFase('corte')}
-      className="fixed inset-0 z-[100] grid cursor-pointer place-items-center"
+      onClick={() => fase === 'entrada' && setFase('saida')}
+      className="fixed inset-0 z-[100] grid cursor-pointer place-items-center px-6"
+      style={{
+        backdropFilter: saindo ? 'blur(0px) saturate(100%)' : 'blur(22px) saturate(140%)',
+        WebkitBackdropFilter: saindo ? 'blur(0px) saturate(100%)' : 'blur(22px) saturate(140%)',
+        background: saindo ? 'rgba(7,6,5,0)' : 'rgba(7,6,5,.42)',
+        transition: `backdrop-filter ${DURACAO_SAIDA}ms ${ease}, -webkit-backdrop-filter ${DURACAO_SAIDA}ms ${ease}, background ${DURACAO_SAIDA}ms ${ease}`,
+      }}
     >
-      <div className="absolute inset-x-0 top-0 h-[50.5%] bg-ink" style={{ transition: `transform 1.1s ${ease}`, transform: aberta ? 'translateY(-100%)' : 'none' }} />
-      <div className="absolute inset-x-0 bottom-0 h-[50.5%] bg-ink" style={{ transition: `transform 1.1s ${ease}`, transform: aberta ? 'translateY(100%)' : 'none' }} />
+      {/* halo dourado suave atrás do logo */}
       <div
-        className="absolute left-1/2 top-1/2 h-px -translate-x-1/2 bg-gold-light"
-        style={{ width: fase === 'entrada' ? 0 : '100vw', transition: `width .9s ${ease}`, boxShadow: '0 0 18px #e3b57c' }}
-      />
-      <div
-        className="relative w-[min(340px,70vw)]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[min(90vw,620px)] w-[min(90vw,620px)] -translate-x-1/2 -translate-y-1/2 rounded-full"
         style={{
-          transition: `opacity .5s, transform 1.1s ${ease}, filter 1.2s`,
-          opacity: aberta ? 0 : 1,
-          transform: aberta ? 'scale(1.15)' : 'none',
+          background: 'radial-gradient(circle, rgba(227,181,124,.22) 0%, rgba(227,181,124,.06) 40%, transparent 68%)',
+          opacity: saindo ? 0 : 1,
+          transition: `opacity ${DURACAO_SAIDA * 0.7}ms ${ease}`,
+        }}
+      />
+
+      <div
+        className="relative w-[min(380px,78vw)]"
+        style={{
+          opacity: saindo ? 0 : 1,
+          transform: saindo ? 'scale(1.06)' : 'none',
+          filter: saindo ? 'blur(6px)' : 'none',
+          transition: `opacity ${DURACAO_SAIDA * 0.8}ms ${ease}, transform ${DURACAO_SAIDA}ms ${ease}, filter ${DURACAO_SAIDA}ms ${ease}`,
         }}
       >
-        <div style={{ animation: 'surgir 1s cubic-bezier(.2,.9,.2,1) both' }}>
-          <Logo brilho className="w-full" />
+        <div style={{ animation: 'logo-entrada 1.1s cubic-bezier(.2,.9,.2,1) both' }}>
+          <Logo brilho className="w-full drop-shadow-[0_10px_40px_rgba(0,0,0,.55)]" />
         </div>
+        {/* filete dourado que se abre embaixo do logo */}
+        <span
+          className="mx-auto mt-7 block h-px w-full origin-center"
+          style={{ background: 'linear-gradient(90deg, transparent, #e3b57c, transparent)', animation: 'filete 1.2s .6s cubic-bezier(.65,0,.25,1) both' }}
+        />
       </div>
     </div>
   )

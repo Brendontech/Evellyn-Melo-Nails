@@ -25,7 +25,7 @@ export default function Progresso({ atual, total, nomes }) {
           )
         })}
       </div>
-      <span className="font-caps text-[0.72rem] uppercase tracking-[0.22em] text-gold">
+      <span className="font-caps text-[0.82rem] uppercase tracking-[0.14em] text-gold">
         Passo {atual} de {total} · {nomes[atual - 1]}
       </span>
     </div>

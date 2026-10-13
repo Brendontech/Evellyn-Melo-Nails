@@ -20,7 +20,7 @@ export default function PassoConfirmado({ data, horario, procedimento, nome, tel
             <path d="M36 56 L50 70 L76 42" fill="none" stroke="#fff0d4" strokeWidth="3" strokeLinecap="round" strokeDasharray="60" strokeDashoffset="60" style={{ animation: 'tracar .6s .9s forwards' }} />
           </svg>
         </div>
-        <span className="font-caps text-[0.72rem] uppercase tracking-[0.22em] text-gold">Horário reservado</span>
+        <span className="font-caps text-[0.82rem] uppercase tracking-[0.14em] text-gold">Horário reservado</span>
         <h3 className="mb-2 mt-1 font-serif text-[clamp(1.9rem,4vw,2.4rem)] font-normal leading-tight">
           Te espero, <i className="text-nude">{pn}</i>!
         </h3>
@@ -29,7 +29,7 @@ export default function PassoConfirmado({ data, horario, procedimento, nome, tel
       </div>
 
       {comSinal && (
-        <p className="mb-0 mt-4 text-center text-[0.94rem] font-light text-mute">
+        <p className="mb-0 mt-4 text-center text-[0.94rem] text-mute">
           A Evellyn confere o seu PIX de {brl((procedimento.preco * SINAL_PIX.porcentagem) / 100)} e confirma a reserva.
         </p>
       )}

@@ -12,7 +12,7 @@ function Mes({ ano, mes, ocupados, selecionado, onEscolher }) {
     <div className="w-full shrink-0">
       <div className="grid grid-cols-7 gap-1 sm:gap-1.5">
         {DIAS_CURTOS.map((d) => (
-          <div key={d} className="pb-1.5 text-center font-caps text-[0.58rem] tracking-[0.06em] text-mute sm:text-[0.66rem] sm:tracking-[0.14em]">{d}</div>
+          <div key={d} className="pb-1.5 text-center font-caps text-[0.82rem] tracking-[0.06em] text-mute sm:text-[0.76rem] sm:tracking-[0.14em]">{d}</div>
         ))}
         {gradeDoMes(ano, mes).map((data, i) => {
           if (!data) return <span key={`v${i}`} aria-hidden="true" />
@@ -59,15 +59,15 @@ export default function Calendario({ indice, setIndice, ocupados, selecionado, o
   const faltam = tema.destaque ? diasAte(new Date(atual.ano, atual.mes, tema.destaque.dia)) : null
 
   return (
-    <div className="relative min-w-0 overflow-hidden rounded-[18px] border border-hair bg-gradient-to-b from-ink-3 to-ink-2 shadow-[0_40px_80px_-40px_#000] sm:rounded-[22px]">
+    <div className="relative min-w-0 overflow-hidden rounded-[18px] border border-hair bg-linear-to-b from-ink-3 to-ink-2 shadow-[0_40px_80px_-40px_#000] sm:rounded-[22px]">
       {/* Cena do mês */}
       <div className="relative h-[170px] overflow-hidden transition-[background] duration-1000 sm:h-[220px]" style={{ background: tema.ceu }}>
         <SeasonScene key={tema.cena} cena={tema.cena} />
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-gradient-to-b from-transparent to-black/70 p-4 sm:px-6 sm:py-5">
-          <h3 className="m-0 font-serif text-[clamp(2.3rem,6vw,3.4rem)] font-normal capitalize italic leading-[0.9]">{MESES[atual.mes]}</h3>
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 bg-linear-to-b from-transparent to-black/70 p-4 sm:px-6 sm:py-5">
+          <h3 className="m-0 font-accent text-[clamp(2.3rem,6vw,3.4rem)] font-normal capitalize italic leading-[0.9]">{MESES[atual.mes]}</h3>
           {tema.destaque && (
             <div className="text-right text-[0.82rem] leading-snug sm:text-[0.92rem]">
-              <b className="block font-caps text-[0.66rem] font-semibold tracking-[0.18em] sm:text-[0.72rem]" style={{ color: tema.cor }}>
+              <b className="block font-caps text-[0.76rem] font-semibold tracking-[0.14em] sm:text-[0.82rem]" style={{ color: tema.cor }}>
                 {tema.destaque.nome} · {pad(tema.destaque.dia)}/{pad(atual.mes + 1)}
               </b>
               <strong className="font-serif text-[1.25rem] font-normal sm:text-[1.6rem]">
@@ -89,7 +89,7 @@ export default function Calendario({ indice, setIndice, ocupados, selecionado, o
                 key={`${m.ano}-${m.mes}`}
                 type="button"
                 onClick={() => ir(i)}
-                className={`rounded-full border px-2.5 py-2 font-caps text-[0.68rem] tracking-[0.12em] transition-all duration-300 sm:px-3.5 sm:tracking-[0.2em] ${
+                className={`rounded-full border px-2.5 py-2 font-caps text-[0.78rem] tracking-[0.12em] transition-all duration-300 sm:px-3.5 sm:tracking-[0.2em] ${
                   i === indice ? 'border-gold-btn bg-gold-btn text-ink' : 'border-hair text-mute hover:text-cream'
                 }`}
               >

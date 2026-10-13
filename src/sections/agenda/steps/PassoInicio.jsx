@@ -11,7 +11,7 @@ export default function PassoInicio() {
             <textPath href="#circulo-inicio">ESCOLHA O DIA · ESCOLHA O DIA · </textPath>
           </text>
         </svg>
-        <b className="absolute inset-0 grid place-items-center font-serif text-[2.2rem] font-normal italic text-gold-pale">1</b>
+        <b className="absolute inset-0 grid place-items-center font-accent text-[2.2rem] font-normal italic text-gold-pale">1</b>
       </div>
       <h3 className="m-0 font-serif text-[clamp(1.9rem,4vw,2.4rem)] font-normal">
         Comece pelo <i className="text-nude">dia</i>

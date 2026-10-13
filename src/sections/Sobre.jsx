@@ -12,7 +12,7 @@ function Numero({ valor, prefixo = '', sufixo = '', rotulo }) {
         {n}
         {sufixo}
       </b>
-      <span className="font-caps text-[0.58rem] uppercase tracking-[0.14em] text-mute sm:text-[0.66rem] sm:tracking-[0.2em]">{rotulo}</span>
+      <span className="font-caps mt-2 block text-[0.74rem] uppercase leading-snug tracking-[0.08em] text-mute sm:text-[0.82rem] sm:tracking-[0.12em]">{rotulo}</span>
     </div>
   )
 }
@@ -33,11 +33,11 @@ export default function Sobre() {
 
         <div className="revelar">
           <span className="rotulo">Sobre mim</span>
-          <p className="my-6 font-serif text-[clamp(1.7rem,3.4vw,2.5rem)] italic leading-tight">
-            <span className="block h-[0.4em] font-serif text-[4rem] not-italic leading-[0.5] text-gold">“</span>
+          <p className="my-6 font-accent text-[clamp(1.7rem,3.4vw,2.5rem)] italic leading-tight">
+            <span className="block h-[0.4em] font-accent text-[4rem] not-italic leading-[0.5] text-gold">“</span>
             Cada mão que sai daqui leva uma peça única, feita com tempo e cuidado.
           </p>
-          <p className="m-0 max-w-[52ch] font-light text-mute">
+          <p className="m-0 max-w-[52ch] text-mute">
             Sou a Evellyn, designer de unhas em Presidente Olegário. Trabalho com alongamento, manutenção e nail art à mão livre. Atendo com hora marcada, material esterilizado e foco total em você.
           </p>
           <div className="mt-10 grid grid-cols-3 gap-3 border-t border-hair pt-8 sm:gap-4">
@@ -45,7 +45,7 @@ export default function Sobre() {
             <Numero valor={SITE.totalTecnicas} sufixo="+" rotulo="Técnicas" />
             <div>
               <b className="foil block font-serif text-[clamp(2.4rem,6vw,3.8rem)] font-normal leading-none">1:1</b>
-              <span className="font-caps text-[0.58rem] uppercase tracking-[0.14em] text-mute sm:text-[0.66rem] sm:tracking-[0.2em]">Atendimento</span>
+              <span className="font-caps mt-2 block text-[0.74rem] uppercase leading-snug tracking-[0.08em] text-mute sm:text-[0.82rem] sm:tracking-[0.12em]">Atendimento</span>
             </div>
           </div>
         </div>

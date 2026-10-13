@@ -38,20 +38,20 @@ export default function Header() {
       >
         <div className="container-site flex h-[68px] items-center justify-between lg:h-[76px]">
           <a href="#inicio" className="flex items-center gap-3" aria-label="Evellyn Melo, início">
-            <Logo tipo="monograma" className="!w-9" alt="" />
-            <span className="font-caps text-[0.72rem] tracking-[0.26em] text-gold-light xs:inline sm:text-[0.8rem] max-[379px]:hidden">EVELLYN MELO</span>
+            <Logo tipo="monograma" className="w-9!" alt="" />
+            <span className="font-caps text-[0.82rem] tracking-[0.14em] text-gold-light xs:inline sm:text-[0.8rem] max-[379px]:hidden">EVELLYN MELO</span>
           </a>
 
           <nav aria-label="Seções" className="hidden items-center gap-8 lg:flex">
             {LINKS.map((l) => (
-              <a key={l.href} href={l.href} className="group relative py-1 font-caps text-[0.74rem] uppercase tracking-[0.28em] text-mute transition-colors hover:text-cream">
+              <a key={l.href} href={l.href} className="group relative py-1 font-caps text-[0.84rem] uppercase tracking-[0.14em] text-mute transition-colors hover:text-cream">
                 {l.label}
                 <span className="absolute inset-x-0 -bottom-0.5 h-px origin-right scale-x-0 bg-gold-light transition-transform duration-500 group-hover:origin-left group-hover:scale-x-100" />
               </a>
             ))}
           </nav>
 
-          <a href="#agenda" className="hidden rounded-full border border-gold px-5 py-3 font-caps text-[0.72rem] tracking-[0.24em] text-gold-pale transition-colors hover:bg-gold-light hover:text-ink lg:inline-block">
+          <a href="#agenda" className="hidden rounded-full border border-gold px-5 py-3 font-caps text-[0.82rem] tracking-[0.14em] text-gold-pale transition-colors hover:bg-gold-light hover:text-ink lg:inline-block">
             AGENDAR
           </a>
 

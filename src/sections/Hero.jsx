@@ -81,13 +81,13 @@ export default function Hero({ iniciado }) {
         <ContagemData />
         <h1 className="m-0 font-serif text-[clamp(3.6rem,15vw,10.5rem)] font-normal leading-[0.86] tracking-[-0.02em]" aria-label={SITE.nome}>
           <NomeAnimado texto="Evellyn" atraso={0} ativo={iniciado} />
-          <NomeAnimado texto="Melo" atraso={0.25} ativo={iniciado} className="mt-[0.02em] pl-[0.6em] italic lg:pl-[0.9em]" />
+          <NomeAnimado texto="Melo" atraso={0.25} ativo={iniciado} className="mt-[0.04em] pl-[0.6em] font-accent italic lg:pl-[0.9em]" />
         </h1>
         <div className="mt-6 flex items-center gap-4 lg:mt-8">
           <span className="h-px w-10 lg:w-16" style={{ background: 'var(--foil)' }} />
-          <p className="m-0 font-caps text-[0.72rem] uppercase tracking-[0.22em] sm:text-[0.8rem] sm:tracking-label">{SITE.marca} · Design de unhas</p>
+          <p className="m-0 font-caps text-[0.82rem] uppercase tracking-[0.14em] sm:text-[0.8rem] sm:tracking-[0.16em]">{SITE.marca} · Design de unhas</p>
         </div>
-        <p className="mb-7 mt-4 max-w-[32ch] text-[1.05rem] font-light text-mute lg:mb-9 lg:mt-5 lg:text-[1.15rem]">
+        <p className="mb-7 mt-4 max-w-[32ch] text-[1.05rem] text-mute lg:mb-9 lg:mt-5 lg:text-[1.15rem]">
           Mais de <em className="font-serif text-[1.15em] text-nude">{SITE.totalTecnicas} técnicas avançadas</em> e arte feita à mão, unha por unha. Atendimento exclusivo em {SITE.cidade}.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -96,8 +96,8 @@ export default function Hero({ iniciado }) {
         </div>
       </div>
 
-      <div aria-hidden="true" className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-caps text-[0.65rem] tracking-label text-mute lg:flex">
-        <i className="block h-11 w-px bg-gradient-to-b from-gold-light to-transparent" />
+      <div aria-hidden="true" className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-caps text-[0.76rem] tracking-label text-mute lg:flex">
+        <i className="block h-11 w-px bg-linear-to-b from-gold-light to-transparent" />
         ROLE
       </div>
     </section>

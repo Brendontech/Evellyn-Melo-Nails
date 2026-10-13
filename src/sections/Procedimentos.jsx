@@ -21,7 +21,7 @@ export default function Procedimentos() {
                   {brl(p.preco)}
                 </span>
               </div>
-              <p className="m-0 mt-1.5 text-[0.98rem] font-light text-mute">
+              <p className="m-0 mt-1.5 text-[0.98rem] text-mute">
                 {p.descricao} <span className="ml-1 text-nude">· {duracaoTexto(p.duracao)}</span>
               </p>
             </div>

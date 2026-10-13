@@ -35,14 +35,14 @@ export default function PassoPix({ procedimento, enviando, onPago, onVoltar }) {
         Garanta seu <i className="text-nude">horário</i>
       </h3>
       <div className="rounded-2xl border p-5" style={{ borderColor: 'color-mix(in srgb, var(--season) 50%, transparent)', background: 'radial-gradient(circle at 100% 0, color-mix(in srgb, var(--season) 22%, transparent), transparent 60%), rgba(255,240,212,.03)' }}>
-        <span className="font-caps text-[0.72rem] uppercase tracking-[0.22em] text-gold">Sinal de {SINAL_PIX.porcentagem}%</span>
+        <span className="font-caps text-[0.82rem] uppercase tracking-[0.14em] text-gold">Sinal de {SINAL_PIX.porcentagem}%</span>
         <div className="foil mt-1 font-serif text-[2.6rem] leading-none tabular-nums sm:text-[3rem]">{brl(sinal)}</div>
         <p className="mb-0 mt-3">Abra o app do seu banco, escolha <b>PIX</b> e cole esta chave:</p>
         <div className="mt-3 flex flex-col gap-2 sm:flex-row">
           <code ref={chaveRef} className="min-w-0 flex-1 break-all rounded-xl border border-dashed border-gold bg-ink p-3.5 font-sans text-base">{SITE.chavePix}</code>
           <button type="button" onClick={copiar} className="min-h-[52px] rounded-xl bg-gold-btn px-5 font-semibold text-ink">{copiado ? 'Copiado ✓' : 'Copiar chave'}</button>
         </div>
-        <p className="mb-0 mt-3 text-[0.94rem] font-light text-mute">
+        <p className="mb-0 mt-3 text-[0.94rem] text-mute">
           Dezembro tem muita procura. O sinal segura sua vaga e é descontado no dia. O restante, {brl(procedimento.preco - sinal)}, você paga no atendimento.
         </p>
       </div>

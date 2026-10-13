@@ -127,7 +127,7 @@ export default function Agenda() {
             />
           </div>
 
-          <div ref={painel} aria-live="polite" className="min-w-0 scroll-mt-24 rounded-[18px] border border-hair bg-gradient-to-b from-cream/[0.03] to-transparent px-4 py-6 sm:rounded-[22px] sm:px-7 sm:py-8">
+          <div ref={painel} aria-live="polite" className="min-w-0 scroll-mt-24 rounded-[18px] border border-hair bg-linear-to-b from-cream/[0.03] to-transparent px-4 py-6 sm:rounded-[22px] sm:px-7 sm:py-8">
             <div key={estado.passo} className="animate-deslizar">
               {mostraCabecalho && <Progresso atual={estado.passo} total={totalPassos} nomes={NOMES_PASSOS} />}
               {estado.passo >= 3 && estado.passo <= 5 && <Resumo data={estado.data} horario={estado.horario} procedimento={estado.passo > 3 ? procedimento : null} />}
